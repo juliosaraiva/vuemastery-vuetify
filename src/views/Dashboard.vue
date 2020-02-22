@@ -68,9 +68,6 @@ export default {
       timeline: timelineData
     };
   },
-  created() {
-    console.log(this.statistics);
-  },
   methods: {
     setEmployee(event) {
       this.snackbar = true;
