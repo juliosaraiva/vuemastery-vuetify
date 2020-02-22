@@ -3,8 +3,13 @@
     <v-app-bar app color="primary" dark>
       <v-toolbar-title>Vuetify Dashboard</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text rounded>Home</v-btn>
-      <v-btn text rounded>Login</v-btn>
+      <v-btn
+        v-for="link in links"
+        :key="`${link.label}-header-link`"
+        text
+        rounded
+        :to="link.url"
+      >{{link.label}}</v-btn>
     </v-app-bar>
     <v-content>
       <router-view></router-view>
@@ -13,16 +18,16 @@
       <v-row justify="center" no-gutters>
         <v-btn
           v-for="link in links"
-          :key="link"
+          :key="`${link.label}-footer-link`"
+          :to="link.url"
           color="white"
           text
           rounded
           class="my-2"
-        >
-          {{ link }}
-        </v-btn>
+        >{{ link.label }}</v-btn>
         <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
-          {{ new Date().getFullYear() }} — <strong>Vuetify Dashboard</strong>
+          {{ new Date().getFullYear() }} —
+          <strong>Vuetify Dashboard</strong>
         </v-col>
       </v-row>
     </v-footer>
@@ -31,13 +36,23 @@
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
 
   data: () => ({
     links: [
-      'Home',
-      'Login'
+      {
+        label: "Home",
+        url: "/"
+      },
+      {
+        label: "Login",
+        url: "/login"
+      },
+      {
+        label: "Dashboard",
+        url: "/dashboard"
+      }
     ]
-  }),
+  })
 };
 </script>
