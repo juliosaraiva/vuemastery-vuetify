@@ -10,6 +10,7 @@
         rounded
         :to="link.url"
       >{{link.label}}</v-btn>
+      <v-btn @click="toggleTheme" text rounded>Toggle Theme</v-btn>
     </v-app-bar>
     <v-content>
       <router-view></router-view>
@@ -57,6 +58,12 @@ export default {
         url: "/signup"
       }
     ]
-  })
+  }),
+  methods: {
+    toggleTheme() {
+      this.$vuetify.theme.themes.dark.anchor = "rgb(113,89,193)";
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    }
+  }
 };
 </script>
